@@ -1,19 +1,10 @@
+// App.js
 import React, { useState, useEffect } from "react";
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import Onboarding from './components/Onboarding';
-import Out from './components/Out';
-import LoginScreen from "./components/screens/LoginScreen";
-import SignupScreen from "./components/screens/SignupScreen";
-import ProfileScreen from "./components/screens/ProfileScreen";
-import EditProfileScreen from "./components/screens/EditProfileScreen";
-import BottomTabNavigation from "./navigation/BottomTabNavigation";
 import * as Font from 'expo-font';
-import SearchScreen from "./components/screens/Search";
-import BooksDetails from "./components/screens/BooksDetails";
-const Stack = createStackNavigator();
+import AppNavigator from "./navigation/navigator";
 
 const Loading = () => {
   return (
@@ -23,28 +14,10 @@ const Loading = () => {
   );
 };
 
-const AppStack = () => (
-  <Stack.Navigator>
-    <Stack.Screen name="Home" component={Out} />
-    <Stack.Screen name="Login" component={LoginScreen} />
-    <Stack.Screen name="Signup" component={SignupScreen} />
-    <Stack.Screen name="ProfileScreen" component={ProfileScreen} /> 
-    <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
-    <Stack.Screen name="Search" component={SearchScreen} /> 
-    <Stack.Screen name="BooksDetails" component={BooksDetails} /> 
-
-  </Stack.Navigator>
-);
-
-const OnboardingStack = () => (
-  <Stack.Navigator>
-    <Stack.Screen name="Onboarding" component={Onboarding} />
-  </Stack.Navigator>
-);
-
 export default function App() {
   const [loading, setLoading] = useState(true);
   const [viewedOnboarding, setViewedOnboarding] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // Authentication state
 
   const checkOnboarding = async () => {
     try {
@@ -59,8 +32,21 @@ export default function App() {
     }
   }
 
+  const checkAuthentication = async () => {
+
+    try {
+      const token = await AsyncStorage.getItem('@userToken');
+      if (token) {
+        setIsAuthenticated(true);
+      }
+    } catch (err) {
+      console.log('Error @checkAuthentication:', err);
+    }
+  }
+
   useEffect(() => {
     checkOnboarding();
+    checkAuthentication();
   }, []);
 
   if (loading) {
@@ -69,7 +55,11 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      {viewedOnboarding ? <BottomTabNavigation /> : <OnboardingStack />}
+      {viewedOnboarding ? (
+        <AppNavigator isAuthenticated={isAuthenticated} />
+      ) : (
+        <PublicStack />
+      )}
     </NavigationContainer>
   );
 }

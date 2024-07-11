@@ -3,7 +3,7 @@ import { View, StyleSheet, TouchableOpacity, Animated } from 'react-native';
 import Svg, { Circle, G } from 'react-native-svg';
 import { AntDesign } from '@expo/vector-icons';
 
-export default function NextButton({ percentage , scrollTo }) {
+export default function NextButton({ percentage, scrollTo, navigation }) {
   const size = 128;
   const strokeWidth = 2;
   const center = size / 2;
@@ -29,17 +29,22 @@ export default function NextButton({ percentage , scrollTo }) {
     progressAnimation.addListener((value) => {
       const strokeDashoffset = circumference - (circumference * value.value) / 100;
       
-      if(progressRef?.current){
+      if (progressRef?.current) {
         progressRef.current.setNativeProps({
           strokeDashoffset
-        })
+        });
       }
-    
-    }, [percentage]);
+    });
+
     return () => {
       progressAnimation.removeAllListeners();
     };
   }, []);
+
+  const handlePress = () => {
+    scrollTo();
+    navigation.navigate('Login'); // Navigate to the Login screen
+  };
 
   return (
     <View style={styles.container}>
@@ -65,7 +70,7 @@ export default function NextButton({ percentage , scrollTo }) {
           />
         </G>
       </Svg>
-       <TouchableOpacity onPress={scrollTo} style={[styles.button, { left: center - 33, top: center - 10 }]} activeOpacity={0.6}>
+      <TouchableOpacity onPress={handlePress} style={[styles.button, { left: center - 33, top: center - 10 }]} activeOpacity={0.6}>
         <AntDesign name="arrowright" size={32} color="#fff" />
       </TouchableOpacity>
     </View>

@@ -5,12 +5,15 @@ import OnboardingItems from './OnboardingItems';
 import Paginator from './Paginator';
 import NextButton from './NextButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 
 
 export default function onboarding() {
+  
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollX = useRef(new Animated.Value(0)).current;
   const slidesRef = useRef(null);
+  const  navigation = useNavigation ();
 
   const handleScroll = Animated.event(
     [{ nativeEvent: { contentOffset: { x: scrollX } } }],
@@ -59,7 +62,9 @@ export default function onboarding() {
         />
       </View>
       <Paginator data={slides} scrollX = {scrollX} />
-      <NextButton scrollTo={scrollTo} percentage={(currentIndex + 1 ) * (100 / slides.length)}/>
+      <NextButton scrollTo={scrollTo}        
+       navigation={navigation}
+ percentage={(currentIndex + 1 ) * (100 / slides.length)}/>
     </View>
   );
 }
