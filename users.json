@@ -1,0 +1,132 @@
+{
+  "users": [
+    {
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "password": "password123",
+      "phone": "+1234567890",
+      "address": "123 Main St, City, Country"
+    },
+    {
+      "name": "Jane Smith",
+      "email": "jane.smith@example.com",
+      "password": "password456",
+      "phone": "+1987654321",
+      "address": "456 Elm St, Town, Country"
+    }
+  ],
+  "books": [
+    {
+      "id": 1,
+      "price": 19.99,
+      "creationDate": "2024-06-01T00:00:00Z",
+      "ageRestriction": "13+",
+      "description": "An epic fantasy novel",
+      "bookName": "The Epic Quest",
+      "bookLanguage": "English",
+      "coverImg": "path/to/image1.jpg",
+      "categoryId": 1,
+      "commandIds": [1, 2]
+    },
+    {
+      "id": 2,
+      "price": 9.99,
+      "creationDate": "2023-11-15T00:00:00Z",
+      "ageRestriction": "16+",
+      "description": "A thrilling mystery novel",
+      "bookName": "The Silent Whisper",
+      "bookLanguage": "English",
+      "coverImg": "path/to/image2.jpg",
+      "categoryId": 2,
+      "commandIds": [3]
+    },
+    {
+      "id": 3,
+      "price": 14.99,
+      "creationDate": "2022-05-20T00:00:00Z",
+      "ageRestriction": "All",
+      "description": "A heartwarming children's book",
+      "bookName": "The Little Star",
+      "bookLanguage": "French",
+      "coverImg": "path/to/image3.jpg",
+      "categoryId": 3,
+      "commandIds": [4, 5]
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Fantasy",
+      "language": "English",
+      "numberOfBooks": 1,
+      "gender": "Fiction",
+      "price": 19.99,
+      "bookIds": [1]
+    },
+    {
+      "id": 2,
+      "name": "Mystery",
+      "language": "English",
+      "numberOfBooks": 1,
+      "gender": "Fiction",
+      "price": 9.99,
+      "bookIds": [2]
+    },
+    {
+      "id": 3,
+      "name": "Children",
+      "language": "French",
+      "numberOfBooks": 1,
+      "gender": "Non-Fiction",
+      "price": 14.99,
+      "bookIds": [3]
+    }
+  ],
+  "commands": [
+    {
+      "id": 1,
+      "userId": "user_123",
+      "creationDate": "2024-06-15T00:00:00Z",
+      "bookIds": [1],
+      "isConfirmed": false,
+      "confirmDate": null,
+      "totalPrice": 39.98
+    },
+    {
+      "id": 2,
+      "userId": "user_456",
+      "creationDate": "2024-06-20T00:00:00Z",
+      "bookIds": [1],
+      "isConfirmed": true,
+      "confirmDate": "2024-06-21T00:00:00Z",
+      "totalPrice": 19.99
+    },
+    {
+      "id": 3,
+      "userId": "user_789",
+      "creationDate": "2023-12-01T00:00:00Z",
+      "bookIds": [2],
+      "isConfirmed": true,
+      "confirmDate": "2023-12-02T00:00:00Z",
+      "totalPrice": 9.99
+    },
+    {
+      "id": 4,
+      "userId": "user_321",
+      "creationDate": "2022-06-05T00:00:00Z",
+      "bookIds": [3],
+      "isConfirmed": false,
+      "confirmDate": null,
+      "totalPrice": 44.97
+    },
+    {
+      "id": 5,
+      "userId": "user_654",
+      "creationDate": "2022-07-10T00:00:00Z",
+      "bookIds": [3],
+      "isConfirmed": true,
+      "confirmDate": "2022-07-11T00:00:00Z",
+      "totalPrice": 14.99
+    }
+  ]
+}
