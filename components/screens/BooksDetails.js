@@ -1,9 +1,13 @@
 import React from 'react'
-import { Text } from 'react-native'
+import { StyleSheet,Text,View  } from 'react-native'
+import { useRoute } from '@react-navigation/native';
+const BooksDetails= () => {
+  const route = useRoute();
+  const id= route.params
+  console.log(id);
 
-function BooksDetails() {
   return (
-  <Text>Books </Text>
+  <Text>BookDetails </Text>
   )
 }
 

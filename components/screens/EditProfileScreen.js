@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Platform, ImageBackground, Te
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useTheme } from 'react-native-paper';
-import ImagePicker from 'react-native-image-picker';
+import { launchImageLibrary } from 'react-native-image-picker';
 import Feather from 'react-native-vector-icons/Feather';
 
 export default function EditProfileScreen() {
@@ -12,20 +12,17 @@ export default function EditProfileScreen() {
 
   const handleChoosePhoto = () => {
     const options = {
-      title: 'Choisir une photo',
-      storageOptions: {
-        skipBackup: true,
-        path: 'images',
-      },
+      mediaType: 'photo',
+      includeBase64: false,
     };
 
-    ImagePicker.showImagePicker(options, (response) => {
+    launchImageLibrary(options, (response) => {
       if (response.didCancel) {
         console.log('User cancelled image picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
+      } else if (response.errorCode) {
+        console.log('ImagePicker Error: ', response.errorMessage);
       } else {
-        const source = { uri: response.uri };
+        const source = { uri: response.assets[0].uri };
         setAvatarSource(source);
       }
     });

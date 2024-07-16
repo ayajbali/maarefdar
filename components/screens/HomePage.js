@@ -1,10 +1,12 @@
 import React from 'react';
-import {StyleSheet,  View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, Fontisto } from '@expo/vector-icons';
 import styles from '../styles/Home.style';
 import WelcomeScreen from '../home/Welcome';
 import Nouveautes from '../home/Nouveautes';
+import HeightSpacer from '../Reusable/HeightSpacer';
+import CategoryPart from '../home/CategoryPart';
 
 export default function HomePage() {
   return (
@@ -27,7 +29,10 @@ export default function HomePage() {
       </View>
       <ScrollView>
         <WelcomeScreen />
-        <Nouveautes/>
+        <HeightSpacer height={10} />
+        <Nouveautes />
+        <HeightSpacer height={10} />
+        <CategoryPart/>
       </ScrollView>
     </SafeAreaView>
   );

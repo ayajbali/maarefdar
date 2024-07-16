@@ -42,8 +42,11 @@ export default function NextButton({ percentage, scrollTo, navigation }) {
   }, []);
 
   const handlePress = () => {
-    scrollTo();
-    navigation.navigate('Login'); // Navigate to the Login screen
+    if (percentage < 100) {
+      scrollTo();
+    } else {
+      navigation.navigate('Login'); // Navigate to the Login screen
+    }
   };
 
   return (

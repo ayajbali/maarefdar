@@ -5,6 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NavigationContainer } from '@react-navigation/native';
 import * as Font from 'expo-font';
 import AppNavigator from "./navigation/navigator";
+import { AuthProvider } from "./context/authcontex/auth";
 
 const Loading = () => {
   return (
@@ -17,7 +18,7 @@ const Loading = () => {
 export default function App() {
   const [loading, setLoading] = useState(true);
   const [viewedOnboarding, setViewedOnboarding] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Authentication state
+  const [isAuthenticated, setIsAuthenticated] = useState(true); // Authentication state
 
   const checkOnboarding = async () => {
     try {
@@ -54,13 +55,15 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      {viewedOnboarding ? (
-        <AppNavigator isAuthenticated={isAuthenticated} />
-      ) : (
-        <PublicStack />
-      )}
-    </NavigationContainer>
+    <AuthProvider>
+      <NavigationContainer>
+        {viewedOnboarding ? (
+          <AppNavigator isAuthenticated={isAuthenticated} />
+        ) : (
+          <PublicStack />
+        )}
+      </NavigationContainer>
+    </AuthProvider>
   );
 }
 

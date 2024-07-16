@@ -57,6 +57,7 @@
     {
       "id": 1,
       "name": "Fantasy",
+      "imageUrl":"../ElMaarefMobile/assets/kids icon.png",
       "language": "English",
       "numberOfBooks": 1,
       "gender": "Fiction",
@@ -66,7 +67,8 @@
     {
       "id": 2,
       "name": "Mystery",
-      "language": "English",
+      "imageUrl":"../ElMaarefMobile/assets/kids icon.png",
+      "language": "French",
       "numberOfBooks": 1,
       "gender": "Fiction",
       "price": 9.99,
@@ -75,6 +77,7 @@
     {
       "id": 3,
       "name": "Children",
+      "imageUrl":"../ElMaarefMobile/assets/kids icon.png",
       "language": "French",
       "numberOfBooks": 1,
       "gender": "Non-Fiction",

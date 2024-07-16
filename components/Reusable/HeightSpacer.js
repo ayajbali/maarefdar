@@ -1,10 +1,10 @@
 import React from 'react';
-import { View } from 'react-native-reanimated/lib/typescript/Animated';
+import { View } from 'react-native';
 
-const HeightSpacer = (height) => {
+const HeightSpacer = ({ height }) => {
   return (
-    <View style={{height:height }}></View>
-  )
+    <View style={{ height }}></View>
+  );
 }
 
-export default HeightSpacer
+export default HeightSpacer;
