@@ -1,11 +1,10 @@
 // App.js
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NavigationContainer } from '@react-navigation/native';
-import * as Font from 'expo-font';
 import AppNavigator from "./navigation/navigator";
-import { AuthProvider } from "./context/authcontex/auth";
+import { AuthContext, AuthProvider } from "./context/authcontex/auth";
 
 const Loading = () => {
   return (
@@ -15,10 +14,10 @@ const Loading = () => {
   );
 };
 
-export default function App() {
+const MainApp = () => {
   const [loading, setLoading] = useState(true);
   const [viewedOnboarding, setViewedOnboarding] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(true); // Authentication state
+  const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
 
   const checkOnboarding = async () => {
     try {
@@ -31,19 +30,18 @@ export default function App() {
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   const checkAuthentication = async () => {
-
     try {
-      const token = await AsyncStorage.getItem('@userToken');
+      const token = await AsyncStorage.getItem('token');
       if (token) {
         setIsAuthenticated(true);
       }
     } catch (err) {
       console.log('Error @checkAuthentication:', err);
     }
-  }
+  };
 
   useEffect(() => {
     checkOnboarding();
@@ -55,14 +53,20 @@ export default function App() {
   }
 
   return (
+    <NavigationContainer>
+      {viewedOnboarding ? (
+        <AppNavigator isAuthenticated={isAuthenticated} />
+      ) : (
+        <PublicStack />
+      )}
+    </NavigationContainer>
+  );
+};
+
+export default function App() {
+  return (
     <AuthProvider>
-      <NavigationContainer>
-        {viewedOnboarding ? (
-          <AppNavigator isAuthenticated={isAuthenticated} />
-        ) : (
-          <PublicStack />
-        )}
-      </NavigationContainer>
+      <MainApp />
     </AuthProvider>
   );
 }

@@ -6,7 +6,7 @@ import ReusableText from '../Reusable/ReusableText';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { categories } from '../../users.json';
-import CategoryItem from '../categoryItem';
+import CategoryItem from '../CategoryItem';
 import CategoryDetails from '../screens/CategoryDetails';
 
 const CategoryPart = () => {
