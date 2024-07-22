@@ -16,7 +16,7 @@ const Loading = () => {
 
 const MainApp = () => {
   const [loading, setLoading] = useState(true);
-  const [viewedOnboarding, setViewedOnboarding] = useState(false);
+  const [viewedOnboarding, setViewedOnboarding] = useState(true);
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
 
   const checkOnboarding = async () => {
@@ -57,7 +57,7 @@ const MainApp = () => {
       {viewedOnboarding ? (
         <AppNavigator isAuthenticated={isAuthenticated} />
       ) : (
-        <PublicStack />
+        <Loading />
       )}
     </NavigationContainer>
   );

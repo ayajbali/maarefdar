@@ -65,8 +65,7 @@ const CategoryPart = () => {
         numColumns={2}
         columnWrapperStyle={{ justifyContent: 'space-between', marginBottom: SIZES.medium }}
         renderItem={({ item }) => (
-             <CategoryItem item={item} margin={10} onPress={() => navigation.navigate('CategoryDetails')} />
-           
+          <CategoryItem item={item} margin={10} onPress={() => navigation.navigate('CategoryDetails')} />
         )}
       />
     </View>
