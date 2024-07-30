@@ -7,7 +7,6 @@ import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { categories } from '../../users.json';
 import CategoryItem from '../CategoryItem';
-import CategoryDetails from '../screens/CategoryDetails';
 
 const CategoryPart = () => {
   const navigation = useNavigation();
@@ -38,7 +37,7 @@ const CategoryPart = () => {
           color={COLORS.black}
         />
 
-        <TouchableOpacity onPress={() => {}}>
+        <TouchableOpacity onPress={() => navigation.navigate('AllCategories')}>
           <Feather name="list" size={20} />
         </TouchableOpacity>
       </View>
@@ -65,7 +64,7 @@ const CategoryPart = () => {
         numColumns={2}
         columnWrapperStyle={{ justifyContent: 'space-between', marginBottom: SIZES.medium }}
         renderItem={({ item }) => (
-          <CategoryItem item={item} margin={10} onPress={() => navigation.navigate('CategoryDetails')} />
+          <CategoryItem item={item} margin={10} onPress={() => navigation.navigate('CategoryDetails', { categoryId: item.id })} />
         )}
       />
     </View>

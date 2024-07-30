@@ -3,7 +3,9 @@ import React, { useState } from 'react';
 import { Ionicons, SimpleLineIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { COLORS, SIZES } from '../../constants/theme';
 import ListBooksItem from '../ListBooksItem';
-
+import { Feather } from '@expo/vector-icons';
+import ReusableText from '../Reusable/ReusableText'
+import reusable from '../Reusable/reusable.style';
 const { height: screenHeight } = Dimensions.get('window');
 
 const CategoryDetails = ({ navigation }) => {
@@ -77,6 +79,19 @@ const CategoryDetails = ({ navigation }) => {
             </View>
           </View>
         </View>
+
+        <View style={[reusable.rowWithSpace('space-between'), { paddingBottom: 20 }]}>
+        <ReusableText
+          text={"Livres"}
+          family={"bold"}
+          size={SIZES.large}
+          color={COLORS.black}
+        />
+
+        <TouchableOpacity onPress={() => {}}>
+          <Feather name="list" size={20} />
+        </TouchableOpacity>
+      </View>
 
        <ListBooksItem/>
 

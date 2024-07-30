@@ -24,7 +24,7 @@
       "description": "An epic fantasy novel",
       "bookName": "The Epic Quest",
       "bookLanguage": "English",
-      "coverImg": "path/to/image1.jpg",
+      "coverImg": "./assets/book1.jpg",
       "categoryId": 1,
       "commandIds": [1, 2]
     },
@@ -36,7 +36,7 @@
       "description": "A thrilling mystery novel",
       "bookName": "The Silent Whisper",
       "bookLanguage": "English",
-      "coverImg": "path/to/image2.jpg",
+      "coverImg": "./assets/book1.jpg",
       "categoryId": 2,
       "commandIds": [3]
     },
@@ -48,7 +48,7 @@
       "description": "A heartwarming children's book",
       "bookName": "The Little Star",
       "bookLanguage": "French",
-      "coverImg": "path/to/image3.jpg",
+      "coverImg": "./assets/book1.jpg",
       "categoryId": 3,
       "commandIds": [4, 5]
     }

@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import HomePage from '../components/screens/HomePage';
+import Historique from '../components/screens/Historique';
 
 
 
@@ -53,7 +54,7 @@ function BottomTabNavigation() {
             iconName = 'person-outline';
           } else if (route.name === 'Settings') {
             iconName = 'settings-outline';
-          } else if (route.name === 'Orders') {
+          } else if (route.name === 'Historique') {
             iconName = 'cart-outline';
           } else if (route.name === 'Contact') {
             iconName = 'mail-outline';
@@ -72,6 +73,7 @@ function BottomTabNavigation() {
       <Tab.Screen name="Settings" component={SettingsScreen} />
       <Tab.Screen name="Orders" component={OrdersScreen} />
       <Tab.Screen name="Contact" component={ContactScreen} />
+      <Tab.Screen name="Historique" component={Historique} />
     </Tab.Navigator>
   );
 }

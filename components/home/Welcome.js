@@ -19,7 +19,7 @@ export default function WelcomeScreen() {
           <TextInput
             style={styles.searchInput}
             value=""
-            onPressIn={() => navigation.navigate("Search")} 
+            onPressIn={() => {}} 
             placeholder="Qu'est ce que vous cherchez?"
           />
         </View>

@@ -1,18 +1,15 @@
-// App.js
 import React, { useState, useEffect, useContext } from "react";
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { NavigationContainer } from '@react-navigation/native';
-import AppNavigator from "./navigation/navigator";
+import AppNavigator from "./navigation/TabNavigator"; // Ensure this path is correct
 import { AuthContext, AuthProvider } from "./context/authcontex/auth";
+import { BooksProvider } from "./context/books";
 
-const Loading = () => {
-  return (
-    <View style={styles.loadingContainer}>
-      <ActivityIndicator size="large" />
-    </View>
-  );
-};
+const Loading = () => (
+  <View style={styles.loadingContainer}>
+    <ActivityIndicator size="large" />
+  </View>
+);
 
 const MainApp = () => {
   const [loading, setLoading] = useState(true);
@@ -52,21 +49,15 @@ const MainApp = () => {
     return <Loading />;
   }
 
-  return (
-    <NavigationContainer>
-      {viewedOnboarding ? (
-        <AppNavigator isAuthenticated={isAuthenticated} />
-      ) : (
-        <Loading />
-      )}
-    </NavigationContainer>
-  );
+  return <AppNavigator isAuthenticated={isAuthenticated} />;
 };
 
 export default function App() {
   return (
     <AuthProvider>
+     <BooksProvider>
       <MainApp />
+      </BooksProvider>
     </AuthProvider>
   );
 }

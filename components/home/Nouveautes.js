@@ -43,9 +43,7 @@ const Nouveautes = () => {
           size={SIZES.large}
           color={COLORS.black}
         />
-        <TouchableOpacity onPress={() => { }}>
-          <Feather name="list" size={20} />
-        </TouchableOpacity>
+        
       </View>
       <HeightSpacer height={10} />
       <FlatList

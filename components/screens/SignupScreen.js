@@ -16,7 +16,7 @@ import { useAuth } from "../../context/authcontex/auth";
 import { createUser } from "../../lib/appwrite/appwrite";
 
 const windowWidth = Dimensions.get("window").width;
-const windowHeight = 12;
+const windowHeight = Dimensions.get("window").height;
 
 export default function SignupScreen() {
   const navigation = useNavigation();

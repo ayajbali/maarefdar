@@ -4,7 +4,7 @@ const { height, width } = Dimensions.get('window');
 const COLORS = {
   primary: '#2A4D50',
   secondary: '#DDF0FF',
-  tertiary: '#FF7754',
+  tertiary: '#FF7781',
   gray: '#83829A',
   gray2: '#C1C0CB',
   offwhite: '#F3F4F8',
