@@ -37,7 +37,7 @@ const CategoryPart = () => {
           color={COLORS.black}
         />
 
-        <TouchableOpacity onPress={() => navigation.navigate('AllCategories')}>
+        <TouchableOpacity onPress={() => navigation.navigate('ContactScreen')}>
           <Feather name="list" size={20} />
         </TouchableOpacity>
       </View>

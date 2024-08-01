@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 import { COLORS, SIZES } from '../constants/theme';
 import { AntDesign } from '@expo/vector-icons'; // Use AntDesign for filled heart icon
+import { useBooks } from '../context/books';
 
 const BookItem = ({ book, onPress }) => {
   const [isPressed, setIsPressed] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false); // Initialize isFavorite state locally
+  const { addToWishlist, removeFromWishlist, wishlist } = useBooks();
+
+  useEffect(() => {
+    // Check if the book is already in the wishlist when the component mounts
+    const isBookFavorite = wishlist.some(item => item.id === book.id);
+    setIsFavorite(isBookFavorite);
+  }, [wishlist, book.id]);
 
   const handlePressIn = () => {
     setIsPressed(true);
@@ -16,7 +24,12 @@ const BookItem = ({ book, onPress }) => {
   };
 
   const handleHeartPress = () => {
-    setIsFavorite(!isFavorite);
+    if (isFavorite) {
+      removeFromWishlist(book.id);
+    } else {
+      addToWishlist(book);
+    }
+    setIsFavorite(!isFavorite); // Toggle the isFavorite state
   };
 
   return (

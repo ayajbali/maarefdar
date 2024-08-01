@@ -5,17 +5,17 @@ import { COLORS, SIZES } from '../../constants/theme';
 import FavoriteCardItem from '../FavoriteCardItem';
 import { useBooks } from '../../context/books';
 import { useNavigation } from '@react-navigation/native';
-import EmptyCartImage from '../../assets/EmptyCart.png'; // Import the image
+import EmptyCartImage from '../../assets/EmptyCart.png';
 
 const FavoriteCard = () => {
   const navigation = useNavigation();
-  const { wishlist, removeFromWishlist } = useBooks();
+  const { wishlist, removeFromWishlist, setIsFavorite, isFavorite,passerCommande } = useBooks();
   const [quantities, setQuantities] = useState(
     wishlist.reduce((acc, item) => ({ ...acc, [item.id]: 1 }), {})
   );
   const [totalPrice, setTotalPrice] = useState(0);
   const [orderConfirmed, setOrderConfirmed] = useState(false);
-  const [confirmationVisible, setConfirmationVisible] = useState(false); // New state for confirmation visibility
+  const [confirmationVisible, setConfirmationVisible] = useState(false);
 
   useEffect(() => {
     const calculateTotalPrice = () => {
@@ -30,6 +30,7 @@ const FavoriteCard = () => {
 
   const handleRemove = (id) => {
     removeFromWishlist(id);
+    setIsFavorite(false);
   };
 
   const handleIncreaseQuantity = (id) => {
@@ -49,6 +50,7 @@ const FavoriteCard = () => {
           ],
           { cancelable: true }
         );
+        return prevQuantities; // Keep previous quantities if limit is reached
       }
       return newQuantities;
     });
@@ -61,7 +63,7 @@ const FavoriteCard = () => {
     });
   };
 
-  const handlePressCommand = () => {
+  const handlePressCommand = async () => {
     Alert.alert(
       "Confirmation",
       "Vous confirmez la commande?",
@@ -72,21 +74,37 @@ const FavoriteCard = () => {
         },
         {
           text: "Confirmer",
-          onPress: () => {
+          onPress: async () => {
             setOrderConfirmed(true);
-            setConfirmationVisible(true); // Show confirmation message
-            setQuantities((prevQuantities) => {
-              const clearedQuantities = Object.keys(prevQuantities).reduce((acc, key) => ({ ...acc, [key]: 1 }), {});
-              return clearedQuantities;
-            });
-            wishlist.forEach(item => removeFromWishlist(item.id));
-            setTimeout(() => setConfirmationVisible(false), 3000); // Hide confirmation message after 3 seconds
+            setConfirmationVisible(true);
+  
+            const orderData = wishlist.map(item => ({
+              id: item.id,
+              name: item.name,
+              price: item.price,
+              quantity: quantities[item.id],
+            }));
+  
+            try {
+              await passerCommande({ items: orderData, total: totalPrice });
+              console.log("Commande créée avec succès");
+  
+              setQuantities((prevQuantities) => {
+                const clearedQuantities = Object.keys(prevQuantities).reduce((acc, key) => ({ ...acc, [key]: 1 }), {});
+                return clearedQuantities;
+              });
+              wishlist.forEach(item => removeFromWishlist(item.id));
+              setTimeout(() => setConfirmationVisible(false), 3000);
+            } catch (error) {
+              console.error('Error creating command:', error);
+            }
           }
         }
       ],
       { cancelable: false }
     );
   };
+  
 
   return (
     <View style={styles.container}>
@@ -277,60 +295,54 @@ const styles = StyleSheet.create({
   },
   grandTotalTitle: {
     color: COLORS.gray,
-    fontSize: 18,
-    fontWeight: 'bold',
+    fontSize: 15,
   },
   grandTotalText: {
-    color: COLORS.black,
-    fontSize: 20,
-    fontWeight: 'bold',
+    color: COLORS.gray,
+    fontSize: 15,
   },
   divider: {
-    borderWidth: 1,
-    borderColor: '#C0C0C0',  
-    marginVertical: 10,
+    borderBottomColor: COLORS.gray,
+    borderBottomWidth: 1,
+    marginVertical: 30,
+    width: '90%',
   },
   commandButton: {
-    marginTop: 50,
-    backgroundColor: 'black',  
-    borderRadius: 5,
-    alignSelf: 'center',  
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    backgroundColor: COLORS.black,
+    paddingVertical: SIZES.small,
+    paddingHorizontal: SIZES.large,
+    borderRadius: SIZES.medium,
+    alignItems: 'center',
+    marginBottom: 30,
   },
   commandButtonText: {
     color: COLORS.white,
-    fontSize: 18,
+    fontSize: SIZES.medium,
     fontWeight: 'bold',
   },
   confirmationContainer: {
-    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginVertical: 10,
-    backgroundColor: '#f0f0f0',
-    padding: 10,
-    borderRadius: 5,
+    marginVertical: 20,
   },
   confirmationText: {
-    marginLeft: 10,
-    fontSize: 18,
     color: 'green',
+    fontSize: 20,
+    fontWeight: 'bold',
   },
   emptyContainer: {
-    justifyContent: 'center',
     alignItems: 'center',
+    justifyContent: 'center',
     marginTop: 50,
   },
   emptyImage: {
     width: 200,
     height: 200,
-    resizeMode: 'contain',
+    marginBottom: 20,
   },
   emptyCartText: {
-    fontSize: 16,
+    fontSize: 20,
     color: COLORS.gray,
-    marginTop: 20,
+    textAlign: 'center',
   },
 });
 

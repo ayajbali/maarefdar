@@ -8,7 +8,7 @@ const booksData = [
     id: '1',
     title: 'Book 1',
     category: 'Category 1',
-    image: require('../../assets/book1.jpg'), // Replace with actual image source
+    image: require('../../assets/book1.jpg'),  
     quantity: 2,
     date: '15/07/24',
   },

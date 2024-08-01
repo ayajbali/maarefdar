@@ -29,6 +29,8 @@ const PrivateTabs = () => (
     <Tab.Screen name="Home" component={HomeScreen} />
     <Tab.Screen name="Profile" component={ProfileScreen} />
     <Tab.Screen name="FavoriteCard" component={FavoriteCard} />
+    <Tab.Screen name="Historique" component={Historique} />
+
   </Tab.Navigator>
 );
 

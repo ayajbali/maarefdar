@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { getCategories, listAllBooks } from "../lib/appwrite/appwrite";
+import { createCommand, getCategories, listAllBooks } from "../lib/appwrite/appwrite";
 
 export const BooksContext = createContext();
 
@@ -10,10 +10,9 @@ export const BooksProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [books, setBooks] = useState([]);
 
-  
   const fetchCategories = async () => {
     try {
-      const res = await getCategories(); // Replace with your actual function to fetch books
+      const res = await getCategories();
       setCategories(res);
     } catch (error) {
       console.error("Error fetching books:", error);
@@ -22,9 +21,10 @@ export const BooksProvider = ({ children }) => {
       setLoading(false);
     }
   };
+
   const fetchBooks = async () => {
     try {
-      const res = await listAllBooks(); // Replace with your actual function to fetch books
+      const res = await listAllBooks();
       setBooks(res);
     } catch (error) {
       console.error("Error fetching books:", error);
@@ -56,13 +56,11 @@ export const BooksProvider = ({ children }) => {
   const addToWishlist = (product) => {
     if (wishlist.find((x) => x.id === product.id)) {
       console.log("Already in wishlist");
-      // Optionally: createToast("Already in wishlist");
     } else {
       const updatedWishlist = [...wishlist, product];
       setWishlist(updatedWishlist);
       saveWishlist(updatedWishlist);
       console.log("Added to wishlist");
-      // Optionally: createToast("Added to wishlist");
     }
   };
 
@@ -71,7 +69,17 @@ export const BooksProvider = ({ children }) => {
     setWishlist(updatedWishlist);
     saveWishlist(updatedWishlist);
     console.log("Removed from wishlist");
-    // Optionally: createToast("Removed from wishlist");
+  };
+
+  const passerCommande = async (data) => {
+    try {
+      console.log("testtt",data);
+      const newRecord = await createCommand(data)
+      return newRecord;
+    } catch (error) {
+      console.error("Error creating command record:", error.response || error);
+      throw error;
+    }
   };
 
   useEffect(() => {
@@ -89,6 +97,7 @@ export const BooksProvider = ({ children }) => {
         addToWishlist,
         removeFromWishlist,
         categories,
+        passerCommande, // Add createCommand to context value
       }}
     >
       {children}

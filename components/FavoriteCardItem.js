@@ -2,12 +2,12 @@ import { Image, StyleSheet, Text, View, TouchableOpacity, Modal, TextInput, Aler
 import React, { useState } from 'react';
 import { Feather, FontAwesome } from '@expo/vector-icons';
 import { COLORS, SIZES } from '../constants/theme';
+import { useBooks } from '../context/books';
 
 const FavoriteCardItem = ({ item, quantity, onIncrease, onDecrease, onUpdateQuantity, onRemove }) => {
   const { bookName, price, coverImg } = item;
   const [inputQuantity, setInputQuantity] = useState(quantity);
   const [modalVisible, setModalVisible] = useState(false);
-
   const handleIncrease = () => {
     if (quantity >= 10) {
       setModalVisible(true);
