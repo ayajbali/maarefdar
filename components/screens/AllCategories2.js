@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     itemText: {
-        fontize: 18,
+        fontSize: 18,
         fontWeight: 'bold',
         marginRight: 8,
     },
