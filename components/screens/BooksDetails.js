@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { ImageBackground, StyleSheet, View, Text, TouchableOpacity, ScrollView, Modal, Animated } from 'react-native';
 import { useRoute } from '@react-navigation/native';
-import { Ionicons, FontAwesome } from '@expo/vector-icons';
+import { Ionicons, FontAwesome , Fontisto  } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
-import { COLORS } from '../../constants/theme';
-
+import { COLORS , SIZES } from '../../constants/theme';
+import { useBooks } from '../../context/books';
 const BooksDetails = ({ navigation }) => {
   const route = useRoute();
   const { id, title, category, rating, price, description } = route.params;
@@ -13,7 +13,7 @@ const BooksDetails = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedRating, setSelectedRating] = useState(0);
   const [scrollY] = useState(new Animated.Value(0));
-
+  const { wishlist } = useBooks();
   const handleHeartPress = () => {
     setIsFavorite(!isFavorite);
   };
@@ -41,7 +41,14 @@ const BooksDetails = ({ navigation }) => {
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
           <Ionicons name='chevron-back-circle' size={30} color="#000" />
         </TouchableOpacity>
-         
+        <View style={{ alignItems: 'flex-end' }}>
+          <View style={styles.cartCount}>
+            <Text style={styles.cartNumber}>{wishlist.length.toString()}</Text>
+          </View>
+          <TouchableOpacity onPress={() => navigation.navigate('FavoriteCard')}>
+            <Fontisto name='shopping-bag' size={24} color="#000" />
+          </TouchableOpacity>
+        </View>
       </Animated.View>
 
       {/* Main Content */}
@@ -170,6 +177,27 @@ const styles = StyleSheet.create({
   },
   backButton: {
     marginLeft: 10,
+  },
+  rightHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  cartCount: {
+    position: 'absolute',
+    bottom: 16,
+    width: 16,
+    height: 16,
+    borderRadius: 8,
+    alignItems: 'center',
+    backgroundColor: 'blue',
+    justifyContent: 'center',
+    zIndex: 999,
+  },
+  cartNumber: {
+    fontFamily: 'regular',
+    fontWeight: '600',
+    fontSize: SIZES.small,
+    color: COLORS.lightWhite
   },
   title: {
     fontSize: 18,

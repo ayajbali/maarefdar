@@ -1,6 +1,4 @@
 
-
-
 // AppNavigator.js
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -19,6 +17,8 @@ import AllCategories from '../components/screens/AllCategories';
 import FavoriteCard from '../components/screens/FavoriteCard';
 import Historique from '../components/screens/Historique';
 import ContactScreen from '../components/screens/ContactScreen';
+import AllBooks from '../components/screens/AllBooks';
+import AllCategories2 from '../components/screens/AllCategories2';
 const Stack = createStackNavigator();
 
 
@@ -37,7 +37,10 @@ const Stack = createStackNavigator();
       <Stack.Screen name="AllCategories" component={AllCategories}  />
       <Stack.Screen name="FavoriteCard" component={FavoriteCard}  />
       <Stack.Screen name="Historique" component={Historique}  />
-      <Stack.Screen name="ContactScreen" component={ContactScreen}  />
+      <Stack.Screen name="Contact" component={ContactScreen}  />
+      <Stack.Screen name="AllBooks" component={AllBooks}  />
+      <Stack.Screen name="AllCategories2" component={AllCategories2}  />
+
 
     </Stack.Navigator>
   );

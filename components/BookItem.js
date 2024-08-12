@@ -29,7 +29,7 @@ const BookItem = ({ book, onPress }) => {
     } else {
       addToWishlist(book);
     }
-    setIsFavorite(!isFavorite); // Toggle the isFavorite state
+    setIsFavorite(!isFavorite);  
   };
 
   return (

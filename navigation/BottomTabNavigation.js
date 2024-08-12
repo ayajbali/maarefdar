@@ -4,7 +4,7 @@ import { View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import HomePage from '../components/screens/HomePage';
 import Historique from '../components/screens/Historique';
-
+import ContactScreen from '../components/screens/ContactScreen';
 
 
 function ProfileScreen() {
@@ -74,7 +74,7 @@ function BottomTabNavigation() {
       <Tab.Screen name="Orders" component={OrdersScreen} />
       <Tab.Screen name="Contact" component={ContactScreen} />
       <Tab.Screen name="Historique" component={Historique} />
-    </Tab.Navigator>
+     </Tab.Navigator>
   );
 }
 

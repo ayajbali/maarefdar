@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Image, TouchableWithoutFeedback, TouchableOpacity, Animated } from 'react-native';
 import { COLORS, SIZES } from '../constants/theme';
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign ,FontAwesome } from '@expo/vector-icons';
 
 const BookCard = ({ book, onPress }) => {
   const [isPressed, setIsPressed] = useState(false);
@@ -25,7 +25,7 @@ const BookCard = ({ book, onPress }) => {
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}
     >
-      <Animated.View style={[styles.container, isPressed && styles.containerPressed]}>
+       <Animated.View style={[styles.container, isPressed && styles.containerPressed]}>
         <Image source={{ uri: book.coverImg }} style={styles.bookCover} />
         <View style={styles.infoContainer}>
           <Text style={[styles.bookTitle, isPressed && styles.textPressed]}>{book.bookName}</Text>
@@ -33,7 +33,11 @@ const BookCard = ({ book, onPress }) => {
           <View style={styles.bottomRow}>
             <Text style={[styles.price, isPressed && styles.textPressed]}>${book.price}</Text>
             <TouchableOpacity onPress={handleHeartPress}>
-              <AntDesign name={isFavorite ? "heart" : "hearto"} size={24} color={isFavorite ? COLORS.red : (isPressed ? COLORS.white : COLORS.primary)} />
+              <FontAwesome
+                name="plus" // Name of the icon
+                size={24} // Size of the icon
+                color={isPressed ? COLORS.red : COLORS.primary} // Conditional color based on state
+              />
             </TouchableOpacity>
           </View>
         </View>

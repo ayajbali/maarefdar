@@ -1,15 +1,25 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Ionicons, Fontisto } from '@expo/vector-icons';
+import { Ionicons, Fontisto, MaterialIcons } from '@expo/vector-icons';
+import Animated, {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withRepeat,
+  withTiming,
+} from 'react-native-reanimated';
 import styles from '../styles/Home.style';
 import WelcomeScreen from '../home/Welcome';
-import Nouveautes from '../home/Nouveautes';
+// import Nouveautes from '../home/Nouveautes';
 import HeightSpacer from '../Reusable/HeightSpacer';
 import CategoryPart from '../home/CategoryPart';
 import { useBooks } from '../../context/books'; // Import the context
 import { useNavigation } from '@react-navigation/native';
 import CitySelectModal from '../CitySelectModal'; // Adjust path as necessary
+
+const duration = 2000;
+const easing = Easing.bezier(0.25, -0.5, 0.25, 1);
 
 export default function HomePage() {
   const navigation = useNavigation();
@@ -45,6 +55,16 @@ export default function HomePage() {
     { label: 'Mahdia', value: 'Mahdia' },
   ];
 
+  const sv = useSharedValue(0);
+
+  useEffect(() => {
+    sv.value = withRepeat(withTiming(1, { duration, easing }), -1);
+  }, []);
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ rotate: `${sv.value * 360}deg` }],
+  }));
+
   return (
     <SafeAreaView>
       <View style={styles.appBarWrapper}>
@@ -71,7 +91,7 @@ export default function HomePage() {
       <ScrollView>
         <WelcomeScreen />
         <HeightSpacer height={10} />
-        <Nouveautes />
+        {/* <Nouveautes /> */}
         <HeightSpacer height={10} />
         <CategoryPart />
       </ScrollView>
@@ -82,6 +102,35 @@ export default function HomePage() {
         onSelect={(city) => setSelectedCity(city)}
         selectedCity={selectedCity}
       />
+      <TouchableOpacity
+        style={localStyles.chatbotIcon}
+        onPress={() => {
+          // Action à effectuer lors de l'appui sur l'icône du chatbot
+          console.log('Chatbot icon clicked');
+        }}
+      >
+        <Animated.View style={[localStyles.animatedIcon, animatedStyle]}>
+          <MaterialIcons name="chat" size={24} color="white" />
+        </Animated.View>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
+
+const localStyles = StyleSheet.create({
+  chatbotIcon: {
+    position: 'absolute',
+    bottom: 40,
+    right: 20,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: 'blue', // change to your preferred color
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  animatedIcon: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});

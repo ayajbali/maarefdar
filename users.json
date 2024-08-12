@@ -57,79 +57,86 @@
     {
       "id": 1,
       "name": "Fantasy",
-      "imageUrl":"../ElMaarefMobile/assets/kids icon.png",
+      "imageUrl": "../ElMaarefMobile/assets/kids icon.png",
       "language": "English",
       "numberOfBooks": 1,
       "gender": "Fiction",
-      "price": 19.99,
-      "bookIds": [1]
+      "commands": [1, 2]
     },
     {
       "id": 2,
       "name": "Mystery",
-      "imageUrl":"../ElMaarefMobile/assets/kids icon.png",
-      "language": "French",
+      "imageUrl": "../ElMaarefMobile/assets/kids icon.png",
+      "language": "English",
       "numberOfBooks": 1,
-      "gender": "Fiction",
-      "price": 9.99,
-      "bookIds": [2]
+      "gender": "Thriller",
+      "commands": [3]
     },
     {
       "id": 3,
-      "name": "Children",
-      "imageUrl":"../ElMaarefMobile/assets/kids icon.png",
+      "name": "Children's Books",
+      "imageUrl": "../ElMaarefMobile/assets/kids icon.png",
       "language": "French",
       "numberOfBooks": 1,
-      "gender": "Non-Fiction",
-      "price": 14.99,
-      "bookIds": [3]
+      "gender": "Kids",
+      "commands": [4, 5]
     }
   ],
   "commands": [
     {
       "id": 1,
-      "userId": "user_123",
-      "creationDate": "2024-06-15T00:00:00Z",
-      "bookIds": [1],
-      "isConfirmed": false,
-      "confirmDate": null,
-      "totalPrice": 39.98
+      "price": 19.99,
+      "quantity": 2
     },
     {
       "id": 2,
-      "userId": "user_456",
-      "creationDate": "2024-06-20T00:00:00Z",
-      "bookIds": [1],
-      "isConfirmed": true,
-      "confirmDate": "2024-06-21T00:00:00Z",
-      "totalPrice": 19.99
+      "price": 19.99,
+      "quantity": 1
     },
     {
       "id": 3,
-      "userId": "user_789",
-      "creationDate": "2023-12-01T00:00:00Z",
-      "bookIds": [2],
-      "isConfirmed": true,
-      "confirmDate": "2023-12-02T00:00:00Z",
-      "totalPrice": 9.99
+      "price": 9.99,
+      "quantity": 3
     },
     {
       "id": 4,
-      "userId": "user_321",
-      "creationDate": "2022-06-05T00:00:00Z",
-      "bookIds": [3],
-      "isConfirmed": false,
-      "confirmDate": null,
-      "totalPrice": 44.97
+      "price": 14.99,
+      "quantity": 2
     },
     {
       "id": 5,
-      "userId": "user_654",
-      "creationDate": "2022-07-10T00:00:00Z",
-      "bookIds": [3],
-      "isConfirmed": true,
-      "confirmDate": "2022-07-11T00:00:00Z",
-      "totalPrice": 14.99
+      "price": 14.99,
+      "quantity": 1
+    }
+  ],
+  "contact": [
+    {
+      "city":"Sousse",
+      "Localisation": "Akouda",
+      "mail": "contact@example.com",
+      "Phone": "+1234567890",
+      "Activities": "Book sales, events, and more."
+    },
+    {
+      "city":"Sfax",
+      "Localisation": "sfax",
+      "mail": "maaref@example.com",
+      "Phone": "+1234567890",
+      "Activities": "Book sales, events, and more."
+    },
+    {
+      "city":"Tunis",
+      "Localisation": "manaar",
+      "mail": "eya@example.com",
+      "Phone": "+1234567890",
+      "Activities": "Book sales, events, and more."
+    },
+    {
+      "city":"Mounastir",
+      "Localisation": "mounastir",
+      "mail": "contact@example.com",
+      "Phone": "+1234567890",
+      "Activities": "Book sales, events, and more."
     }
   ]
 }

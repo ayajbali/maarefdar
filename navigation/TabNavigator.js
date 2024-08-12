@@ -19,6 +19,8 @@ import FavoriteCard from '../components/screens/FavoriteCard';
 import Historique from '../components/screens/Historique';
 import OrderScreen from '../components/screens/OrdersScreen';
 import ContactScreen from '../components/screens/ContactScreen';
+import AllBooks from '../components/screens/AllBooks';
+import AllCategories2 from '../components/screens/AllCategories2';
 
 // Create Stack and Tab navigators
 const Stack = createStackNavigator();
@@ -30,6 +32,7 @@ const PrivateTabs = () => (
     <Tab.Screen name="Profile" component={ProfileScreen} />
     <Tab.Screen name="FavoriteCard" component={FavoriteCard} />
     <Tab.Screen name="Historique" component={Historique} />
+    <Tab.Screen name="Contact" component={ContactScreen} />
 
   </Tab.Navigator>
 );
@@ -54,7 +57,10 @@ const PrivateStack = () => (
     <Stack.Screen name="AllCategories" component={AllCategories} />
     <Stack.Screen name="OrderScreen" component={OrderScreen} />
     <Stack.Screen name="Historique" component={Historique} />
-    <Stack.Screen name="ContactScreen" component={ContactScreen}  />
+    <Stack.Screen name="Contact" component={ContactScreen}  />
+    <Stack.Screen name="AllBooks" component={AllBooks}  />
+    <Stack.Screen name="AllCategories2" component={AllCategories2}  />
+
 
   </Stack.Navigator>
   </>

@@ -2,8 +2,9 @@ import React, { useState, useEffect, useContext } from "react";
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AppNavigator from "./navigation/TabNavigator"; // Ensure this path is correct
-import { AuthContext, AuthProvider } from "./context/authcontex/auth";
+import { AuthContext, AuthProvider, useAuth } from "./context/authcontex/auth";
 import { BooksProvider } from "./context/books";
+import { signOut } from "./lib/appwrite/appwrite";
 
 const Loading = () => (
   <View style={styles.loadingContainer}>
@@ -15,6 +16,8 @@ const MainApp = () => {
   const [loading, setLoading] = useState(true);
   const [viewedOnboarding, setViewedOnboarding] = useState(true);
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+const user =useAuth() 
+console.log(user)
 
   const checkOnboarding = async () => {
     try {
@@ -32,9 +35,13 @@ const MainApp = () => {
   const checkAuthentication = async () => {
     try {
       const token = await AsyncStorage.getItem('token');
+      // if (user) {
+      //   signOut()
+      // }
       if (token) {
         setIsAuthenticated(true);
       }
+      
     } catch (err) {
       console.log('Error @checkAuthentication:', err);
     }

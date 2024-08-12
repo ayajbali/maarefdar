@@ -41,7 +41,25 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     paddingHorizontal: SIZES.small,
-  }
+  },
+  modalOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+  },
+  modalContainer: {
+    width: '80%',
+    backgroundColor: COLORS.white,
+    borderRadius: SIZES.radius,
+    padding: SIZES.medium,
+    alignItems: 'center',
+  },
+  modalButtonText: {
+    marginTop: SIZES.medium,
+    fontSize: SIZES.medium,
+    color: COLORS.primary,
+  },
 });
 
 export default styles;
