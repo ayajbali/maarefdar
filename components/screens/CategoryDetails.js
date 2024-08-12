@@ -6,6 +6,7 @@ import ListBooksItem from '../ListBooksItem';
 import ReusableText from '../Reusable/ReusableText';
 import reusable from '../Reusable/reusable.style';
 import { useNavigation } from '@react-navigation/native';
+import AllCategories2 from './AllCategories2';
 
 const { height: screenHeight } = Dimensions.get('window');
 
@@ -77,7 +78,7 @@ const CategoryDetails = () => {
         <View style={styles.descriptionWrapper}>
           <Text style={styles.descriptionTitle}>Description:</Text>
           <Text style={styles.descriptionText}>
-            Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.
+            Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression...
           </Text>
         </View>
 
@@ -87,7 +88,6 @@ const CategoryDetails = () => {
               <Ionicons name='location-outline' size={18} color={COLORS.primary} />
               <Text style={styles.iconText}> Localisation</Text>
             </View>
-
             <View style={styles.iconTextWrapper}>
               <MaterialCommunityIcons name='truck-delivery-outline' size={18} color={COLORS.primary} />
               <Text style={styles.iconText}> Livraison</Text>
@@ -102,13 +102,15 @@ const CategoryDetails = () => {
             size={SIZES.large}
             color={COLORS.black}
           />
-
           <TouchableOpacity onPress={() => navigation.navigate('AllBooks')}>
             <Feather name="list" size={20} />
           </TouchableOpacity>
         </View>
 
-        <ListBooksItem />
+        {/* Add a wrapper view for AllCategories2 */}
+        <View style={styles.allCategoriesContainer}>
+          <AllCategories2 />
+        </View>
 
         <View style={styles.cartRow}>
           <TouchableOpacity onPress={handleOrderConfirmation} style={styles.cartBtn}>
@@ -242,9 +244,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: SIZES.small,
-    backgroundColor: COLORS.secondary,
-    padding: SIZES.small,
-    borderRadius: SIZES.medium,
+    backgroundColor: COLORS.white,
+    borderRadius: SIZES.large,
+    padding: 10,
   },
   iconTextWrapper: {
     flexDirection: 'row',
@@ -252,11 +254,11 @@ const styles = StyleSheet.create({
   },
   iconText: {
     color: COLORS.primary,
-    marginLeft: 5,
+    fontSize: SIZES.medium,
+    marginLeft: 10,
   },
   ratingRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: SIZES.small,
   },
@@ -265,21 +267,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   ratingText: {
-    fontWeight: '500',
-    fontSize: SIZES.medium,
+    fontSize: SIZES.small,
     marginLeft: 5,
   },
   incrementRow: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginLeft: 'auto',
   },
   countText: {
-    fontWeight: '500',
-    fontSize: SIZES.medium,
     marginHorizontal: 10,
   },
   descriptionWrapper: {
-    marginBottom: SIZES.small,
+    marginVertical: SIZES.medium,
   },
   descriptionTitle: {
     fontWeight: 'bold',
@@ -288,7 +288,11 @@ const styles = StyleSheet.create({
   },
   descriptionText: {
     fontSize: SIZES.medium,
-    color: COLORS.gray,
+    color: COLORS.darkGray,
+  },
+  allCategoriesContainer: {
+    marginVertical: SIZES.medium,
+    
   },
   modalContainer: {
     flex: 1,
@@ -298,11 +302,9 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     backgroundColor: COLORS.white,
-    borderRadius: 10,
+    borderRadius: SIZES.medium,
     padding: 20,
     alignItems: 'center',
-    width: '80%',
-    maxWidth: 400,
   },
   modalTitle: {
     fontSize: SIZES.large,
@@ -310,49 +312,50 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   modalDetails: {
-    width: '100%',
-    marginVertical: 20,
+    marginVertical: 10,
   },
   priceContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 10,
-  },
-  grandTotalText: {
-    fontWeight: 'bold',
-    fontSize: SIZES.large,
+    marginVertical: SIZES.small,
   },
   text: {
     fontSize: SIZES.medium,
   },
   divider: {
     height: 1,
+    width: '100%',
     backgroundColor: COLORS.gray,
-    marginVertical: 10,
+    marginVertical: SIZES.small,
+  },
+  grandTotalText: {
+    fontSize: SIZES.medium,
+    fontWeight: 'bold',
   },
   modalActions: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
+    marginTop: 20,
   },
   cancelButton: {
     backgroundColor: COLORS.gray,
-    padding: SIZES.medium,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
     borderRadius: SIZES.medium,
-    alignItems: 'center',
   },
   cancelButtonText: {
     color: COLORS.white,
-    fontWeight: 'bold',
+    fontSize: SIZES.medium,
   },
   confirmButton: {
     backgroundColor: COLORS.primary,
-    padding: SIZES.medium,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
     borderRadius: SIZES.medium,
-    alignItems: 'center',
   },
   confirmButtonText: {
     color: COLORS.white,
-    fontWeight: 'bold',
+    fontSize: SIZES.medium,
   },
 });

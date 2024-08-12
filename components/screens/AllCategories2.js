@@ -17,8 +17,9 @@ import data from '../../users.json';
 const ICON_SIZE = 42;
 const ITEM_HEIGHT = ICON_SIZE * 2;
 const colors = {
-    yellow: '#FFE8A3',
+    blue: '#00aeef',  // Updated color
     dark: '#2D2D2D',
+    textGray: '#83829A',  // New color for text
 };
 
 const { width, height } = Dimensions.get('window');
@@ -32,10 +33,10 @@ const Item = React.memo(({ bookName, price, showText }) => {
         <View style={styles.itemWrapper}>
             {showText ? (
                 <View style={styles.textRow}>
-                    <Text style={[styles.itemText, { color: colors.yellow }]}>
+                    <Text style={[styles.itemText, { color: colors.textGray }]}>
                         {bookName}
                     </Text>
-                    <Text style={[styles.itemText, { color: colors.yellow }]}>
+                    <Text style={[styles.itemText, { color: colors.textGray }]}>
                         {`$${price.toFixed(2)}`}
                     </Text>
                 </View>
@@ -46,41 +47,19 @@ const Item = React.memo(({ bookName, price, showText }) => {
     );
 });
 
-const ConnectWithText = React.memo(() => {
-    return (
-        <View
-            style={{
-                position: 'absolute',
-                top: height / 2 - ITEM_HEIGHT * 2,
-                width: width * 0.7,
-                paddingHorizontal: 14,
-            }}>
-            <Text
-                style={{
-                    color: colors.yellow,
-                    fontSize: 52,
-                    fontWeight: '700',
-                    lineHeight: 52,
-                }}>
-                Liste des Livres
-            </Text>
-        </View>
-    );
-});
-
 const ConnectButton = React.memo(({ onPress }) => {
     return (
         <View
             style={{
                 position: 'absolute',
-                top: height / 2 + ITEM_HEIGHT / 2,
+                top: height / 2 + ITEM_HEIGHT / 30,
                 paddingHorizontal: 14,
             }}>
             <View
                 style={{
                     height: ITEM_HEIGHT * 3,
                     width: 2,
-                    backgroundColor: colors.yellow,
+                    backgroundColor: colors.blue,
                 }}
             />
             <TouchableOpacity
@@ -88,7 +67,7 @@ const ConnectButton = React.memo(({ onPress }) => {
                 style={{
                     paddingVertical: 10,
                     paddingHorizontal: 12,
-                    backgroundColor: colors.yellow,
+                    backgroundColor: colors.blue,
                     alignItems: 'center',
                     justifyContent: 'center',
                 }}
@@ -133,14 +112,14 @@ const List = React.forwardRef(({ color, showText, style, onScroll, onItemIndexCh
     );
 });
 
-export default function App() {
+export default function AllCategories2() {
     const [index, setIndex] = React.useState(0);
 
     const onConnectPress = React.useCallback(() => {
         Alert.alert('Connect with:', data.books[index].bookName.toUpperCase());
     }, [index]);
 
-    const yellowRef = React.useRef();
+    const blueRef = React.useRef();
     const darkRef = React.useRef();
     const scrollY = React.useRef(new Animated.Value(0)).current;
 
@@ -168,11 +147,10 @@ export default function App() {
     return (
         <View style={styles.container}>
             <StatusBar hidden />
-            <ConnectWithText />
             <Item {...data.books[0]} showText={false} />
             <List
-                ref={yellowRef}
-                color={colors.yellow}
+                ref={blueRef}
+                color={colors.blue}
                 showText
                 style={[styles.list, { zIndex: 1 }]} // Ensure list is above darkRef
                 onScroll={onScroll}
@@ -192,7 +170,7 @@ export default function App() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.dark,
+        backgroundColor: '#fff',  // Removed dark background
     },
     list: {
         ...StyleSheet.absoluteFillObject,
@@ -200,7 +178,7 @@ const styles = StyleSheet.create({
     },
     overlay: {
         position: 'absolute',
-        backgroundColor: colors.yellow,
+        backgroundColor: colors.blue,
         width,
         height: ITEM_HEIGHT / 2,
         top: height / 2 - ITEM_HEIGHT / 2,
@@ -220,7 +198,7 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     itemText: {
-        fontSize: 18,
+        fontize: 18,
         fontWeight: 'bold',
         marginRight: 8,
     },
