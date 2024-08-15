@@ -21,6 +21,7 @@ import OrderScreen from '../components/screens/OrdersScreen';
 import ContactScreen from '../components/screens/ContactScreen';
 import AllBooks from '../components/screens/AllBooks';
 import AllCategories2 from '../components/screens/AllCategories2';
+import WishList from '../components/screens/WishList';
 
 // Create Stack and Tab navigators
 const Stack = createStackNavigator();
@@ -29,9 +30,8 @@ const Tab = createBottomTabNavigator();
 const PrivateTabs = () => (
   <Tab.Navigator screenOptions={{ headerShown: false }}>
     <Tab.Screen name="Home" component={HomeScreen} />
+    <Tab.Screen name="WishList" component={WishList} />
     <Tab.Screen name="Profile" component={ProfileScreen} />
-    <Tab.Screen name="FavoriteCard" component={FavoriteCard} />
-    <Tab.Screen name="Historique" component={Historique} />
     <Tab.Screen name="Contact" component={ContactScreen} />
 
   </Tab.Navigator>

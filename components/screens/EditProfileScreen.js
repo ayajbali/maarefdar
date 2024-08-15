@@ -5,9 +5,11 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useTheme } from 'react-native-paper';
 import { launchImageLibrary } from 'react-native-image-picker';
 import Feather from 'react-native-vector-icons/Feather';
+import { useNavigation } from '@react-navigation/native';
 
 export default function EditProfileScreen() {
   const { colors } = useTheme();
+  const navigation = useNavigation();
   const [avatarSource, setAvatarSource] = useState(require('../../assets/avatar.png'));
 
   const handleChoosePhoto = () => {
@@ -76,7 +78,7 @@ export default function EditProfileScreen() {
         <View style={[styles.action, { marginTop: 30 }]}>
           <FontAwesome name="user-o" color={colors.text} size={20} />
           <TextInput
-            placeholder="Last Name"
+            placeholder="Nom"
             placeholderTextColor="#666666"
             autoCorrect={false}
             style={[styles.textInput, { color: colors.text }]}
@@ -85,7 +87,7 @@ export default function EditProfileScreen() {
         <View style={[styles.action, { marginTop: 30 }]}>
           <Feather name="phone" color={colors.text} size={20} />
           <TextInput
-            placeholder="Phone"
+            placeholder="Numero de telephone"
             placeholderTextColor="#666666"
             keyboardType="number-pad"
             autoCorrect={false}
@@ -105,7 +107,7 @@ export default function EditProfileScreen() {
         <View style={[styles.action, { marginTop: 30 }]}>
           <FontAwesome name="globe" color={colors.text} size={20} />
           <TextInput
-            placeholder="Country"
+            placeholder="Pays"
             placeholderTextColor="#666666"
             autoCorrect={false}
             style={[styles.textInput, { color: colors.text }]}
@@ -114,7 +116,7 @@ export default function EditProfileScreen() {
         <View style={[styles.action, { marginTop: 30 }]}>
           <Icon name="map-marker-outline" color={colors.text} size={20} />
           <TextInput
-            placeholder="City"
+            placeholder="Ville"
             placeholderTextColor="#666666"
             autoCorrect={false}
             style={[styles.textInput, { color: colors.text }]}
@@ -124,7 +126,7 @@ export default function EditProfileScreen() {
           <Text style={styles.panelButtonTitle}>Confirmer</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.commandButton2, { marginTop: 10 }]} onPress={() => {}}>
+        <TouchableOpacity style={[styles.commandButton2, { marginTop: 10 }]} onPress={() => navigation.goBack()}>
           <Text style={styles.panelButtonTitle}>Annuler</Text>
         </TouchableOpacity>
       </View>

@@ -47,12 +47,13 @@ const ProfileScreen = () => {
       </View>
 
       <View style={styles.menuWrapper}>
-        <TouchableRipple onPress={() => {}}>
-          <View style={styles.menuItem}>
-            <Icon name="heart" color="#FF6347" size={25} />
-            <Text style={styles.menuItemText}>Votre Favoris</Text>
-          </View>
-        </TouchableRipple>
+      <TouchableRipple onPress={() => navigation.navigate("Historique")}>
+        <View style={styles.menuItem}>
+          <Icon name="history" color="#32CD32" size={25} />
+          <Text style={styles.menuItemText}>Historique Commandes</Text>
+        </View>
+      </TouchableRipple>
+
 
         <TouchableRipple onPress={() => {}}>
           <View style={styles.menuItem}>
@@ -61,12 +62,7 @@ const ProfileScreen = () => {
           </View>
         </TouchableRipple>
 
-        <TouchableRipple onPress={() => {}}>
-          <View style={styles.menuItem}>
-            <Icon name="account-check" color="#27AE60" size={25} />
-            <Text style={styles.menuItemText}>Support</Text>
-          </View>
-        </TouchableRipple>
+
 
         <TouchableRipple onPress={() => navigation.navigate('EditProfileScreen')}>
           <View style={styles.menuItem}>

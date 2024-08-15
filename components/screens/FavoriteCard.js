@@ -113,7 +113,7 @@ const FavoriteCard = () => {
           <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
             <FontAwesome name="chevron-left" size={24} color={COLORS.gray} />
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>Favoris</Text>
+          <Text style={styles.headerTitle}>Panier</Text>
           <View style={{ alignItems: 'flex-end' }}>
             <View style={styles.cartCount}>
               <Text style={styles.cartNumber}>{wishlist.length}</Text>
