@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     alignItems: 'center',
     padding: SIZES.medium,
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.bckg, // Updated background color
   },
   logoContainer: {
     width: '100%',

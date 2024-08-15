@@ -62,13 +62,13 @@ const Historique = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={{ backgroundColor: COLORS.white, flex: 1 }}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
           <FontAwesome name="chevron-left" size={24} color={COLORS.gray} />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Historique</Text>
-        <View style={{ alignItems: 'flex-end' }}>
+        <View style={styles.headerRight}>
           <View style={styles.cartCount}>
             <Text style={styles.cartNumber}>{wishlist.length}</Text>
           </View>
@@ -82,7 +82,7 @@ const Historique = ({ navigation }) => {
       ) : (
         <FlatList
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingBottom: 80 }}
+          contentContainerStyle={styles.flatListContent}
           data={books}
           renderItem={({ item }) => <HistoriqueCard item={item} onRemove={handleRemoveItem} />}
           keyExtractor={(item) => item.id}
@@ -95,6 +95,10 @@ const Historique = ({ navigation }) => {
 export default Historique;
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: COLORS.bckg, // Set the background color
+    flex: 1,
+  },
   header: {
     paddingVertical: 20,
     marginTop: 20,
@@ -212,5 +216,11 @@ const styles = StyleSheet.create({
   emptyText: {
     fontSize: SIZES.large,
     color: COLORS.gray,
+  },
+  headerRight: {
+    alignItems: 'flex-end',
+  },
+  flatListContent: {
+    paddingBottom: 80,
   },
 });
