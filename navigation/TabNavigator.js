@@ -22,6 +22,7 @@ import ContactScreen from '../components/screens/ContactScreen';
 import AllBooks from '../components/screens/AllBooks';
 import AllCategories2 from '../components/screens/AllCategories2';
 import WishList from '../components/screens/WishList';
+import Chat from '../components/screens/Chat';
 
 // Create Stack and Tab navigators
 const Stack = createStackNavigator();
@@ -60,6 +61,7 @@ const PrivateStack = () => (
     <Stack.Screen name="Contact" component={ContactScreen}  />
     <Stack.Screen name="AllBooks" component={AllBooks}  />
     <Stack.Screen name="AllCategories2" component={AllCategories2}  />
+    <Stack.Screen name="Chat" component={Chat}  />
 
 
   </Stack.Navigator>

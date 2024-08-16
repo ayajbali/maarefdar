@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image, FlatList, SafeAreaView, StyleSheet } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Fontisto from 'react-native-vector-icons/Fontisto';
@@ -11,11 +11,34 @@ const WishList = ({ navigation }) => {
   ];
 
   const CartCard = ({ item }) => {
+    const [quantity, setQuantity] = useState(1);
+
+    const incrementQuantity = () => {
+      setQuantity(quantity + 1);
+    };
+
+    const decrementQuantity = () => {
+      if (quantity > 1) {
+        setQuantity(quantity - 1);
+      }
+    };
+
     return (
       <View style={styles.cartCard}>
         <Image source={item.image} style={styles.bookImage} />
         <View style={styles.cartCardTextContainer}>
-          <Text style={styles.cartCardText}>{item.name}</Text>
+          <View style={styles.nameAndQuantityContainer}>
+            <Text style={styles.cartCardText}>{item.name}</Text>
+            <View style={styles.quantityContainer}>
+              <TouchableOpacity onPress={decrementQuantity}>
+                <FontAwesome name="minus-circle" size={20} color={COLORS.primary} />
+              </TouchableOpacity>
+              <Text style={styles.quantityText}>{quantity}</Text>
+              <TouchableOpacity onPress={incrementQuantity}>
+                <FontAwesome name="plus-circle" size={20} color={COLORS.primary} />
+              </TouchableOpacity>
+            </View>
+          </View>
           <Text style={styles.priceText}>{item.price}</Text>
           <TouchableOpacity style={styles.addToCartButton}>
             <Text style={styles.addToCartButtonText}>Ajouter au panier</Text>
@@ -57,7 +80,8 @@ const WishList = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.bckg, // Updated background color
+    backgroundColor: COLORS.bckg,
+    marginTop: 30,
   },
   header: {
     flexDirection: 'row',
@@ -72,9 +96,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headerTitle: {
-    fontSize: 18,
-    color: COLORS.black, // Updated text color
+    fontSize: SIZES.large,
     fontWeight: 'bold',
+    color: COLORS.black,
+    textAlign: 'center',
+    flex: 1,
   },
   shoppingBagButton: {
     flexDirection: 'row',
@@ -91,6 +117,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     zIndex: 999,
   },
+  backButton: {
+    backgroundColor: COLORS.white,
+    borderColor: COLORS.gray,
+    borderWidth: 1,
+    borderRadius: SIZES.small,
+    padding: 5,
+  },
   cartNumber: {
     fontFamily: 'regular',
     fontWeight: '600',
@@ -100,12 +133,12 @@ const styles = StyleSheet.create({
   flatListContent: {
     paddingHorizontal: 16,
     paddingBottom: 16,
-    paddingTop: 32, // Added padding to move the entire list down
+    paddingTop: 32, 
   },
   cartCard: {
     flexDirection: 'row',
     marginBottom: 16,
-    backgroundColor: COLORS.white, // Assuming card background color
+    backgroundColor: COLORS.white,
     borderRadius: 8,
     padding: 16,
     elevation: 3,
@@ -119,19 +152,43 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
+  nameAndQuantityContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
   cartCardText: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: COLORS.black, // Updated text color
+    color: COLORS.black,
+    flex: 1,
+  },
+  quantityContainer: {
+    top:20,
+  flexDirection: 'row',
+  alignItems: 'center',
+  borderWidth: 1,
+  borderColor: COLORS.gray,
+  borderRadius: 8,
+  paddingHorizontal: 8,
+  paddingVertical: 4,
+  width: 80, // Set a specific width
+},
+
+  quantityText: {
+    fontSize: 16,
+    marginHorizontal: 8,
+    color: COLORS.black,
   },
   priceText: {
     fontSize: 14,
     color: COLORS.gray,
     marginVertical: 4,
+    top:-5,
   },
   addToCartButton: {
     marginTop: 8,
-    backgroundColor: COLORS.primary, // Assuming button background color
+    backgroundColor: COLORS.primary,
     borderRadius: 8,
     paddingVertical: 8,
     paddingHorizontal: 16,

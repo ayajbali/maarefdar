@@ -17,6 +17,7 @@ import CategoryPart from '../home/CategoryPart';
 import { useBooks } from '../../context/books'; // Import the context
 import { useNavigation } from '@react-navigation/native';
 import CitySelectModal from '../CitySelectModal'; // Adjust path as necessary
+import Chat from './Chat';
 
 const duration = 2000;
 const easing = Easing.bezier(0.25, -0.5, 0.25, 1);
@@ -105,7 +106,7 @@ export default function HomePage() {
       <TouchableOpacity
         style={localStyles.chatbotIcon}
         onPress={() => {
-          // Action à effectuer lors de l'appui sur l'icône du chatbot
+          navigation.navigate("Chat")
           console.log('Chatbot icon clicked');
         }}
       >

@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   headerTitle: {
-    fontSize: SIZES.large,
+   fontSize: SIZES.large,
     fontWeight: 'bold',
     color: COLORS.black,
     textAlign: 'center',
